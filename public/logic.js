@@ -13,19 +13,20 @@ var app = new Vue({
             number: ''
         }
     },
+    created:function(){
+        console.log("collecting lessons from the database...")
+        fetch("http://localhost:3000/collection/lessons").then(
+            function(res){
+                res.json().then(
+                    function(json){
+                        app.lessons = json;
+                    }
+                )
+            }
+        )
+    },
     methods: {
-        created(){
-            console.log("collecting lessons from the database...")
-            fetch("http://localhost:3000/collection/lessons").then(
-                function(res){
-                    res.json().then(
-                        function(json){
-                            app.lessons = json;
-                        }
-                    )
-                }
-            )
-        },
+       
         addItemToCart(lesson) {
             this.lessons.find(item => item.id == lesson.id).availableInventory -= 1;
             
@@ -90,7 +91,5 @@ var app = new Vue({
             }
         }
     },
-    created() {
-        this.lessons = lessons
-    }
+    
 });

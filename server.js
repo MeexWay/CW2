@@ -92,7 +92,7 @@
 // app.listen(port)
 
 //import modules
-const express = require('expressress')
+const express = require('express')
 const { ObjectID } = require('mongodb')
 
 //create an expressress js instance
@@ -145,6 +145,26 @@ app.post('/collection/:collectionName', (req, res, next) => {
         if (err) return next(err);
         res.send(result.ops);
     })
+})
+//middleware to update spaces of lesson collection
+app.put("/:collectionName/:id", (req, res, next) => {
+    req.collection.update({
+            _id: new ObjectID(req.params.id)
+        }, {
+            $set: req.body
+        }, {
+            safe: true,
+            multi: false
+        },
+        (e, result) => {
+            if (e) return next(e);
+            res.send((result.result.n === 1 ? {
+                msg: "success"
+            } : {
+                msg: "error"
+            }))
+        }
+    )
 })
 
 //retrieve customer orders by name and phone
