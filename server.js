@@ -1,13 +1,13 @@
 // // Import dependencies modules:
-// const express = require('express')
+// const expressress = require('expressress')
 // // const bodyParser = require('body-parser')
 
 
-// // Create an Express.js instance:
-// const app = express()
+// // Create an expressress.js instance:
+// const app = expressress()
 
-// // config Express.js
-// app.use(express.json())
+// // config expressress.js
+// app.use(expressress.json())
 // app.set('port', 3000)
 // app.use((req, res, next) => {
 //     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -92,15 +92,16 @@
 // app.listen(port)
 
 //import modules
-const exp = require('express')
+const express = require('expressress')
 const { ObjectID } = require('mongodb')
 
-//create an express js instance
-const app = exp()
+//create an expressress js instance
+const app = express()
 
-//config express js
-app.use(exp.json())
-app.use(exp.static("public"))
+//config expressress js
+app.use(express.json())
+//let expressress know where to render static files from
+app.use(express.static("public"))
 
 const port = process.env.PORT || 3000
 
@@ -112,33 +113,33 @@ app.use((req, res, next) => {
     next()
 })
 
-//Connect to mongodb
+//Connect to mongodb client
 const MongoClient = require('mongodb').MongoClient
 let db
 MongoClient.connect('mongodb+srv://meex:12345@cluster0.orkke.mongodb.net', (err, client) => {
     db = client.db('coursework2')
 })
-
+//set parameters for the routes
 app.param('collectionName', (req, res, next, collectionName) => {
     req.collection = db.collection(collectionName);
     return next()
 })
 
-//display a message or root path to show that API is working
+//render the frontend of the app
 app.get('/', (req, res, next) => {
     res.render("index.html");
     next();
 })
 
 
-//retrieve all the objects from collection
+//retrieve all the objects from the collections in the database
 app.get('/collection/:collectionName', (req, res, next) => {
     req.collection.find({}).toArray((e, results) => {
         if (e) return next(e)
         res.send(results)
     })
 })
-// add objects to collection
+// add objects to each collection in the database
 app.post('/collection/:collectionName', (req, res, next) => {
     req.collection.insert(req.body, (err, result) => {
         if (err) return next(err);
@@ -147,17 +148,15 @@ app.post('/collection/:collectionName', (req, res, next) => {
 })
 
 //retrieve customer orders by name and phone
-app.get('/collection/:collectionName/:name/:phone', (req, res, next) => {
-    req.collection.find({
-        name: (req.params.name),
-        phone: (req.params.phone)
-    }).toArray((e, result) => {
-        if (e) return next(e)
-        res.send(result)
-    })
-})
-
-
+// app.get('/collection/:collectionName/:name/:phone', (req, res, next) => {
+//     req.collection.find({
+//         name: (req.params.name),
+//         phone: (req.params.phone)
+//     }).toArray((e, result) => {
+//         if (e) return next(e)
+//         res.send(result)
+//     })
+// })
 app.listen(port, () => {
-    console.log('Express js server runnning')
+    console.log(`server is running on port ${port}`)
 })
