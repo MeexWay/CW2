@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>AFTER SCHOOL CLUB</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="styling.css">
+	
+	<style>
+body {
+  background-color: grey;
+}
+
+@media screen and (min-width: 480px) {
+  body {
+    background-color: #fff;
+  }
+}
+aside {
+    float: right;
+}
+</style>
+</head>
+
+</head>
+
+<body>
+    <div id="app">
+        <div class="package">
+            <header>
+                <h1 v-text="headername"></h1>
+                <button v-if="cart.length > 0" @click='showCheckout'> {{cart.length}} <span
+                        class="fas fa-cart-plus"></span>CHECKOUT</button>
+            </header>
+        </div>
+        <hr>
+        <div class="package">
+            <div class="base">
+                <aside>
+				<br><br>
+                    <h4>SORT BY</h4>
+					
+                    <ul>
+  
+  <input type="radio" id="subject" name="sort" value="subject"  @click="type = 'subject'">
+  <label for="subject">SUBJECT</label><br>
+  <input type="radio" id="location" name="sort" value="location"  @click="type = 'location'">
+  <label for="locaton">LOCATION</label><br>
+  <input type="radio" id="price" name="sort" value="price"  @click="type = 'price'">
+  <label for="price">PRICE</label><br>
+  
+                    </ul>
+					
+					
+					
+                </aside>
+                <main>
+                    <div v-if='!showProduct'>
+                        <div class="tbar">
+                            <h1>LESSONS</h1>
+                            <select v-model="sort" id="sortby">
+                                <option value="descending">DESCENDING</option>
+                                <option value="ascending">ASCENDING</option>
+
+                            </select>
+							
+                        </div>
+                        <hr>
+                        <div class="lessons">
+                            <div v-for="(lessons, index) in sortedLessons" :key="`lesson--${index}`"
+                                class="lessons_item">
+                                
+                                <figure><img v-bind:src="lessons.image"></figure>
+                                <p>Subject: {{ lessons.subject }}</p>
+                                <p>Location: {{ lessons.location }}</p>
+                                <p>Price: {{ lessons.price }}</p>
+                                <p>Spaces: {{lessons.availableInventory}}</p>
+                                <button v-on:click='addItemToCart(lessons)' :disabled="!lessons.availableInventory" class="button">Add to
+                                    cart</button>
+                                <span v-if="lessons.availableInventory">{{lessons.availableInventory + ' ' + 'SPACES LEFT'}}</span>
+                                <span v-else>NO SPACE AVAILABLE</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div v-else>
+                        <div class="package">
+                            <div class="tbar">
+                                <button @click="showCheckout"><span class="fas fa-chevron-left"></span> Go back</button>
+                              
+								<h4>TOTAL AMOUNT:₦{{total}}</h4>
+                            </div>
+                            <h4>Cart List</h4>
+                            <div class="cart">
+                                <div class="cart_item">
+                                    <div class="position">Image</div>
+                                    <div>Subject</div>
+                                    <div>Location</div>
+                                    <div>Price</div>
+                                    <div style="width: auto;">Action</div>
+                                </div>
+                                <hr style="width: 100%">
+                                <div class="cart_item" v-for="(item, index) in cart" :key="`cart--${index}`">
+                                    <div class="positon"><img :src="item.image" alt=""></div>
+                                    <div>{{item.subject}}</div>
+                                    <div>{{item.location}}</div>
+                                    <div>₦{{item.price}}</div>
+                                    <div style="width: auto;"><button @click="deleteFromCart(item)"><i style="color:red;"
+                                                class="fa fa-minus" aria-hidden="true"></i></button></div>
+                                </div>
+                                <div v-if="!cart.length > 0" class="cart_item"
+                                    style="background-color: transparent; padding: 20px;">
+                                    <div style="text-align: center; color: gray; font-size: 20px; font-weight: bold;">
+                                        List Empty</div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div>
+                                <h3>CUSTOMER INFORMATION</h3>
+                                <form>
+                                    <div>
+                                        <label for="name">Name:</label>
+                                        <input v-model="user.name" type="text" placeholder="Enter full name" required >
+                                    </div>
+                                    <div>
+                                        <label for="phone">Phoneno:</label>
+                                        <input v-model="user.number" type="tel" placeholder="Enter mobile number" required>
+                                    </div>
+                                    <input type="submit" value="Checkout">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+    
+    <script src="./products.js"></script>
+    <script src="./logic.js">
+        
+    </script>
+</body>
+
+</html>
