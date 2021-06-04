@@ -66,7 +66,7 @@ var app = new Vue({
                 .catch((error) => {
                     console.log(error);
                 })
-                app.lesson.forEach(lesson=>{
+                app.lessons.forEach(lesson=>{
                     if(lesson.availableInventory!=0) lesson.availableInventory -=this.cartCount(lesson._id)
                 })
             // if (this.user.name(this.user.name)) {
