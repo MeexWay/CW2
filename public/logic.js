@@ -5,7 +5,6 @@ var app = new Vue({
         lessons: [],
         cart: [],
         showProduct: false,
-       
         sort: 'ascending',
         type: '',
         user: {
@@ -13,12 +12,12 @@ var app = new Vue({
             number: ''
         }
     },
-    created:function(){
+    created: function () {
         console.log("collecting lessons from the database...")
         fetch("http://localhost:3000/collection/lessons").then(
-            function(res){
+            function (res) {
                 res.json().then(
-                    function(json){
+                    function (json) {
                         app.lessons = json;
                     }
                 )
@@ -26,31 +25,46 @@ var app = new Vue({
         )
     },
     methods: {
-       
+
         addItemToCart(lesson) {
-            this.lessons.find(item => item.id == lesson.id).availableInventory -= 1;
-            
+            this.lessons.find(item => item._id == lesson._id).availableInventory -= 1;
+
             this.cart.push({ cartId: (this.cart.length + 1), ...lesson });
-            
-            
+
+
         },
         deleteFromCart(lesson) {
             if (confirm('DELETE LESSON?')) {
-               
+
                 this.cart = this.cart.filter(item => item.cartId !== lesson.cartId)
             }
-             
+
         },
         showCheckout() {
             this.showProduct = !this.showProduct;
         },
         submit() {
-            if (this.user.name(this.user.name)) {
-                alert('ORDER SUBMITTED.')
-                console.log(this.user);
-            }
+            fetch('http://localhost:3000/collection/orders', {
+                method: "POST",
+                headers: {
+                    "Content-Type": 'application/json',
+                },
+                mode: "cors",
+                cache: "no-store",
+                body: JSON.stringify(app.user)
+            }).then(response => response.json())
+                .then(responseJSON => { })
+                .catch((error) => {
+                    console.log(error);
+                })
+            // if (this.user.name(this.user.name)) {
+            //     alert('ORDER SUBMITTED.')
+              
+            // }
+
+
         },
-        
+
     },
     computed: {
         total() {
@@ -91,5 +105,5 @@ var app = new Vue({
             }
         }
     },
-    
+
 });

@@ -117,7 +117,7 @@ aside {
                             <hr>
                             <div>
                                 <h3>CUSTOMER INFORMATION</h3>
-                                <form>
+                                <form v-on:submit.prevent="submit">
                                     <div>
                                         <label for="name">Name:</label>
                                         <input v-model="user.name" type="text" placeholder="Enter full name" required >
@@ -126,7 +126,7 @@ aside {
                                         <label for="phone">Phoneno:</label>
                                         <input v-model="user.number" type="tel" placeholder="Enter mobile number" required>
                                     </div>
-                                    <input type="submit" value="Checkout">
+                                    <button type="submit" value="Checkout">Checkout</button>
                                 </form>
                             </div>
                         </div>
@@ -136,7 +136,6 @@ aside {
         </div>
     </div>
     
-    <script src="./products.js"></script>
     <script src="./logic.js">
         
     </script>

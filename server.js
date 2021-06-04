@@ -142,7 +142,10 @@ app.get('/collection/:collectionName', (req, res, next) => {
 // add objects to each collection in the database
 app.post('/collection/:collectionName', (req, res, next) => {
     req.collection.insert(req.body, (err, result) => {
-        if (err) return next(err);
+        if (err){
+            console.log(err)
+        return next(err);
+        }
         res.send(result.ops);
     })
 })
