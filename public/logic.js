@@ -9,12 +9,16 @@ var app = new Vue({
         type: '',
         user: {
             name: '',
-            number: ''
+            number: '',
+            lesson_ID:[],
+            number_of_spaces:{
+                "":""
+            }
         }
     },
     created: function () {
         console.log("collecting lessons from the database...")
-        fetch("http://localhost:3000/collection/lessons").then(
+        fetch("https://meex-cw2.herokuapp.com/collection/lessons").then(
             function (res) {
                 res.json().then(
                     function (json) {
@@ -43,8 +47,17 @@ var app = new Vue({
         showCheckout() {
             this.showProduct = !this.showProduct;
         },
+        cartCount(id){
+            let count = 0;
+            for(let i = 0; i<this.cart.length;i++){
+                if(this.cart[i]._id===id){
+                    count++
+                }
+            }
+            return count;
+        },
         submit() {
-            fetch('http://localhost:3000/collection/orders', {
+            fetch('https://meex-cw2.herokuapp.com/collection/orders', {
                 method: "POST",
                 headers: {
                     "Content-Type": 'application/json',
@@ -56,6 +69,9 @@ var app = new Vue({
                 .then(responseJSON => { })
                 .catch((error) => {
                     console.log(error);
+                })
+                app.lesson.forEach(lesson=>{
+                    if(lesson.availableInventory!=0) lesson.availableInventory -=this.cartCount(lesson._id)
                 })
             // if (this.user.name(this.user.name)) {
             //     alert('ORDER SUBMITTED.')
