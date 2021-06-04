@@ -10,10 +10,6 @@ var app = new Vue({
         user: {
             name: '',
             number: '',
-            lesson_ID:[],
-            number_of_spaces:{
-                "":""
-            }
         }
     },
     created: function () {
