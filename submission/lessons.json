@@ -1,0 +1,91 @@
+[{
+  "_id": {
+    "$oid": "60b93efbcd680c3f30712f66"
+  },
+  "subject": "ENGLISH",
+  "location": "BAUCHI",
+  "price": "280",
+  "availableInventory": "10",
+  "image": "images/eng.jfif"
+},{
+  "_id": {
+    "$oid": "60b93efbcd680c3f30712f67"
+  },
+  "subject": "MATHEMATICS",
+  "location": "LAGOS",
+  "price": "215",
+  "availableInventory": "10",
+  "image": "images/maths.jfif"
+},{
+  "_id": {
+    "$oid": "60b93efbcd680c3f30712f68"
+  },
+  "subject": "CHEMISTRY",
+  "location": "ABUJA",
+  "price": "230",
+  "availableInventory": "10",
+  "image": "images/chem.jfif"
+},{
+  "_id": {
+    "$oid": "60b93efbcd680c3f30712f69"
+  },
+  "subject": "PHYSICS",
+  "location": "KWARA",
+  "price": "110",
+  "availableInventory": "10",
+  "image": "images/physics.jfif"
+},{
+  "_id": {
+    "$oid": "60b93efbcd680c3f30712f6a"
+  },
+  "subject": "ARABIC",
+  "location": "SOKOTO",
+  "price": "150",
+  "availableInventory": "10",
+  "image": "images/arabic.jfif"
+},{
+  "_id": {
+    "$oid": "60b93efbcd680c3f30712f6b"
+  },
+  "subject": "ECONOMICS",
+  "location": "KANO",
+  "price": "200",
+  "availableInventory": "10",
+  "image": "images/econs.jfif"
+},{
+  "_id": {
+    "$oid": "60b93efbcd680c3f30712f6c"
+  },
+  "subject": "MUSIC",
+  "location": "OSUN",
+  "price": "110",
+  "availableInventory": "10",
+  "image": "images/music.jfif"
+},{
+  "_id": {
+    "$oid": "60b93efbcd680c3f30712f6d"
+  },
+  "subject": "PROGRAMMING",
+  "location": "OGUN",
+  "price": "120",
+  "availableInventory": "10",
+  "image": "images/programming.jfif"
+},{
+  "_id": {
+    "$oid": "60b93efbcd680c3f30712f6e"
+  },
+  "subject": "AGRIC SCIENCE",
+  "location": "KATSINA",
+  "price": "180",
+  "availableInventory": "10",
+  "image": "images/agric.jfif"
+},{
+  "_id": {
+    "$oid": "60b93efbcd680c3f30712f6f"
+  },
+  "subject": "SOCIAL STUDIES",
+  "location": "KADUNA",
+  "price": "100",
+  "availableInventory": "10",
+  "image": "images/social.jfif"
+}]
