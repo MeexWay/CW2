@@ -15,7 +15,7 @@ var app = new Vue({
     created: function () {
         console.log("collecting lessons from the database...")
         fetch("https://meex-cw2.herokuapp.com/collection/lessons").then(
-            function (res) {
+            function (res) {        
                 res.json().then(
                     function (json) {
                         app.lessons = json;
