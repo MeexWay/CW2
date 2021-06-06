@@ -69,10 +69,10 @@ var app = new Vue({
                 app.lessons.forEach(lesson=>{
                     if(lesson.availableInventory!=0) lesson.availableInventory -=this.cartCount(lesson._id)
                 })
-            // if (this.user.name(this.user.name)) {
-            //     alert('ORDER SUBMITTED.')
+             if (this.user.name(this.user.name)) {
+                 alert('ORDER SUBMITTED.')
               
-            // }
+             }
 
 
         },

@@ -1,5 +1,5 @@
 GitHub Repository (Backend): https://github.com/MeexWay/CW2
-GitHub Page (Frontend): https://meexway.github.io/CW-ONE/
+GitHub Page (Frontend): https://meexway.github.io/CW2/public/index.html
 Heroku Link : https://meex-cw2.herokuapp.com/
 Heroku lessons link:https://meex-cw2.herokuapp.com/collection/lessons
 
