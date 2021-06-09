@@ -68,7 +68,8 @@ var app = new Vue({
                 })
 
             app.lessons.forEach(lesson => {
-                if (lesson.availableInventory != 0) lesson.availableInventory -= this.cartCount(lesson._id)
+                if (lesson.availableInventory != 0){
+                 lesson.availableInventory -= this.cartCount(lesson._id)
                 fetch(`https://meex-cw2.herokuapp.com/collection/orders/${lesson._id}`, {
                     method: "PUT",
                     headers: {
@@ -82,6 +83,7 @@ var app = new Vue({
                     .catch((error) => {
                         console.log(error);
                     })
+                }
 
             })
             if (this.user.name(this.user.name)) {
