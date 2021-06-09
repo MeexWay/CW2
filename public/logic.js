@@ -76,7 +76,7 @@ var app = new Vue({
                     },
                     mode: "cors",
                     cache: "no-store",
-                    body: JSON.stringify(lesson)
+                    body: JSON.stringify(app.lessons)
                 }).then(response => response.json())
                     .then(responseJSON => { })
                     .catch((error) => {
