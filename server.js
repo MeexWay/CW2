@@ -57,7 +57,7 @@ app.post('/collection/:collectionName', (req, res, next) => {
     })
 })
 //middleware to update spaces of lesson collection
-app.put("/:collectionName/:id", (req, res, next) => {
+app.put("collection/:collectionName/:id", (req, res, next) => {
     req.collection.update({
             _id: new ObjectID(req.params.id)
         }, {

@@ -15,7 +15,7 @@ var app = new Vue({
     created: function () {
         console.log("collecting lessons from the database...")
         fetch("https://meex-cw2.herokuapp.com/collection/lessons").then(
-            function (res) {        
+            function (res) {
                 res.json().then(
                     function (json) {
                         app.lessons = json;
@@ -43,10 +43,10 @@ var app = new Vue({
         showCheckout() {
             this.showProduct = !this.showProduct;
         },
-        cartCount(id){
+        cartCount(id) {
             let count = 0;
-            for(let i = 0; i<this.cart.length;i++){
-                if(this.cart[i]._id===id){
+            for (let i = 0; i < this.cart.length; i++) {
+                if (this.cart[i]._id === id) {
                     count++
                 }
             }
@@ -66,13 +66,28 @@ var app = new Vue({
                 .catch((error) => {
                     console.log(error);
                 })
-                app.lessons.forEach(lesson=>{
-                    if(lesson.availableInventory!=0) lesson.availableInventory -=this.cartCount(lesson._id)
-                })
-             if (this.user.name(this.user.name)) {
-                 alert('ORDER SUBMITTED.')
-              
-             }
+
+            app.lessons.forEach(lesson => {
+                if (lesson.availableInventory != 0) lesson.availableInventory -= this.cartCount(lesson._id)
+                fetch(`https://meex-cw2.herokuapp.com/collection/orders/${lesson._id}`, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": 'application/json',
+                    },
+                    mode: "cors",
+                    cache: "no-store",
+                    body: JSON.stringify(lesson)
+                }).then(response => response.json())
+                    .then(responseJSON => { })
+                    .catch((error) => {
+                        console.log(error);
+                    })
+
+            })
+            if (this.user.name(this.user.name)) {
+                alert('ORDER SUBMITTED.')
+
+            }
 
 
         },
